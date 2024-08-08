@@ -1,0 +1,16 @@
+{
+  "validUser": {
+    "email": "prajwolhh@gmail.com",
+    "password": "Pra123rty"
+  },
+  "invalidUser": {
+    "invalidCredentials": {
+      "email": "invalidemail@gmail.com",
+      "password": "Pra123rty"
+    },
+    "passwordLeadingSpace": {
+      "email": "prajwolhh@gmail.com",
+      "password": " Pra123rty"
+    }
+  }
+}
