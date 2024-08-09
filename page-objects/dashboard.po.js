@@ -4,49 +4,64 @@ const { expect } = require("@playwright/test");
 exports.DashboardPage = class DashboardPage {
   constructor(page) {
     this.page = page;
-    this.searchInput = '//*[@id="myHeader"]/div[1]/div/div/div[2]/input[1]';
-    this.searchBtn = '//*[@id="myHeader"]/div[1]/div/div/span/form/button';
-    this.productAddtoCart =
-      '//*[@id="main-content"]/div/div/div/div[2]/div[1]/button';
-    this.cartBtn = '//*[@id="myHeader"]/div[2]/div/div[3]/div/div[2]';
-    this.increaseBtn =
-      '//*[@id="main-content"]/section[2]/div/section/div[1]/table/tbody/tr/td[4]/div/div/span[2]/button/i';
+    this.searchIcon =
+      '//*[@id="page"]/header[1]/div[1]/div[2]/div/div/div[1]/div/a';
+    this.searchInput =
+      '//*[@id="woocommerce-product-search-field-search-form-1"]';
+    this.searchButton = '//*[@id="page"]/header[1]/div[2]/form/button';
+    this.product = '//*[@id="primary"]/ul/li[1]/a';
+
+    this.addToCartButton =
+      '//*[@id="product-1749"]/div[1]/div[2]/form/div/button';
+    this.cart = '//*[@id="site-header-cart"]/div[1]/a';
+
+    this.incQuantity =
+      '//*[@id="post-28"]/div/div[1]/form/table/tbody/tr[1]/td[5]/div/a[2]';
     this.updateCart =
-      '//*[@id="main-content"]/section[2]/div/section/div[1]/div/button[2]';
+      '//*[@id="post-28"]/div/div[1]/form/table/tbody/tr[2]/td/button';
     this.deleteItems =
-      '//*[@id="main-content"]/section[2]/div/section/div[1]/table/tbody/tr/td[6]/button/i';
-    this.logoutBtn = '//*[@id="main"]/header/div[1]/div/div[2]/ul/li[4]/a/span';
+      '//*[@id="post-28"]/div/div[1]/form/table/tbody/tr[1]/td[1]/a';
+    this.account = '//*[@id="post-30"]/header/h1';
+
+    this.logoutBtn = '//*[@id="post-30"]/div/div/nav/ul/li[6]/a';
   }
 
   async addToCart() {
-    await this.page.locator(this.searchInput).fill("sunflower oil");
-    await this.page.locator(this.searchBtn).click();
-    await this.page.waitForTimeout(3000);
-    await this.page.locator(this.productAddtoCart).click();
-    await this.page.waitForTimeout(3000);
-    await this.page.locator(this.cartBtn).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.locator(this.searchIcon).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.locator(this.searchInput).fill("hemp bag");
+    await this.page.waitForTimeout(2000);
+    await this.page.locator(this.searchButton).click();
+    await this.page.waitForTimeout(5000);
+    await this.page.locator(this.product).click();
+    await this.page.locator(this.addToCartButton).click();
+
+    await this.page.goto("https://hemphimalayan.com/cart/");
+    await this.page.waitForTimeout(2000);
   }
 
   async increseQuantity() {
-    await this.page.locator(this.cartBtn).click();
+    await this.page.goto("https://hemphimalayan.com/cart/");
     for (let i = 0; i <= 3; i++) {
-      await this.page.locator(this.increaseBtn).click();
+      await this.page.locator(this.incQuantity).click();
     }
     await this.page.waitForTimeout(3000);
-
     await this.page.locator(this.updateCart).click();
     await this.page.waitForTimeout(3000);
   }
 
   async deleteItem() {
-    await this.page.locator(this.cartBtn).click();
+    await this.page.goto("https://hemphimalayan.com/cart/");
     await this.page.waitForTimeout(3000);
-
     await this.page.locator(this.deleteItems).click();
     await this.page.waitForTimeout(3000);
   }
 
   async logout() {
+    await this.page.goto("https://hemphimalayan.com/my-account/");
+
     await this.page.locator(this.logoutBtn).click();
+    await this.page.waitForTimeout(3000);
   }
 };

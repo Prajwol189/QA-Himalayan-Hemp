@@ -11,7 +11,9 @@ test.beforeEach(async ({ page }) => {
     LoginTestData.validUser.email,
     LoginTestData.validUser.password
   );
-  await login.verifyValidLogin();
+  await page.goto("/");
+
+  // await login.verifyValidLogin();
 });
 
 test.describe("buy product", () => {
@@ -19,17 +21,20 @@ test.describe("buy product", () => {
   test("add to cart", async ({ page }) => {
     const dashboard = new DashboardPage(page);
     await dashboard.addToCart();
+    // await dashboard.logout();
   });
 
   test("increase quantity", async ({ page }) => {
     const dashboard = new DashboardPage(page);
     await dashboard.increseQuantity();
+    // await dashboard.logout();
   });
 
   test("delete item", async ({ page }) => {
     const dashboard = new DashboardPage(page);
     await dashboard.deleteItem();
   });
+
   test("logout", async ({ page }) => {
     const dashboard = new DashboardPage(page);
     await dashboard.logout();

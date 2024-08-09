@@ -25,7 +25,18 @@ test.describe("Login tests", () => {
         testData.invalidUser.invalidCredentials.password
       );
 
-      await login.invalidLogin();
+      await login.invalidLogin(
+        "Unknown email address. Check again or try your username."
+      );
+    });
+
+    test("empty login", async ({ page }) => {
+      const login = new LoginPage(page);
+      await login.login(
+        testData.invalidUser.empty.email,
+        testData.invalidUser.empty.password
+      );
+      await login.invalidLogin("Error: Username is required.");
     });
 
     test("password with leading space", async ({ page }) => {
@@ -34,7 +45,9 @@ test.describe("Login tests", () => {
         testData.invalidUser.passwordLeadingSpace.email,
         testData.invalidUser.passwordLeadingSpace.password
       );
-      await login.invalidLogin();
+      await login.invalidLogin(
+        "Error: The password you entered for the email address mprajwol518@gmail.com is incorrect. Lost your password?"
+      );
     });
   });
 });
