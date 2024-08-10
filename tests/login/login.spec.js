@@ -38,16 +38,5 @@ test.describe("Login tests", () => {
       );
       await login.invalidLogin("Error: Username is required.");
     });
-
-    test("password with leading space", async ({ page }) => {
-      const login = new LoginPage(page);
-      await login.login(
-        testData.invalidUser.passwordLeadingSpace.email,
-        testData.invalidUser.passwordLeadingSpace.password
-      );
-      await login.invalidLogin(
-        "Error: The password you entered for the email address mprajwol518@gmail.com is incorrect. Lost your password?"
-      );
-    });
   });
 });

@@ -19,7 +19,9 @@ exports.LoginPage = class LoginPage {
     await this.page.locator(this.loginbtn).click();
     await this.page.locator(this.emailInput).fill(email);
     await this.page.locator(this.passwordInput).fill(password);
+    await this.page.waitForTimeout(3000);
     await this.page.locator(this.loginButton).click();
+    await this.page.waitForTimeout(3000);
   }
 
   async verifyValidLogin() {

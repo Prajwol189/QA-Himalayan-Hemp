@@ -38,7 +38,6 @@ exports.DashboardPage = class DashboardPage {
     await this.page.locator(this.addToCartButton).click();
 
     await this.page.goto("https://hemphimalayan.com/cart/");
-    await this.page.waitForTimeout(2000);
   }
 
   async increseQuantity() {
@@ -46,7 +45,7 @@ exports.DashboardPage = class DashboardPage {
     for (let i = 0; i <= 3; i++) {
       await this.page.locator(this.incQuantity).click();
     }
-    await this.page.waitForTimeout(3000);
+
     await this.page.locator(this.updateCart).click();
     await this.page.waitForTimeout(3000);
   }

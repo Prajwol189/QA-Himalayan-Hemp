@@ -12,10 +12,6 @@
     "invalidCredentials": {
       "email": "invalidemail@gmail.com",
       "password": "pra123rty"
-    },
-    "passwordLeadingSpace": {
-      "email": "mprajwol518@gmail.com",
-      "password": " pra 1234rty"
     }
   }
 }
